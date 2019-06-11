@@ -8,3 +8,8 @@
   dominant-baseline: hanging;
   color: #333;
 }
+
+.c-icon-menu__text {
+  dominant-baseline: hanging;
+  font-size: 12px;
+}
