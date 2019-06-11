@@ -11,7 +11,7 @@ function renderSlide(data, cfg, done) {
   wordWrap = initializeWordWrapper(measureText);
 
   const headerData = data[0][0];
-  const leftMenuData = data[1].map(d => d.title);
+  const leftMenuData = data[1];
   console.log(data);
 
   svg
@@ -28,7 +28,22 @@ function renderSlide(data, cfg, done) {
     .attr("class", "c-header__sub-title")
     .text(headerData.subtitle);
 
-  IconMenuComponent(svg, leftMenuData, { x: 10, y: 90 });
+  const textBox = TextBoxComponent(svg, { x: 220, y: 90 });
+  textBox.setContent("FOOO BARRRR");
+
+  IconMenuComponent(svg, leftMenuData, {
+    x: 10,
+    y: 90,
+    orderAndIcons: [
+      { title: "Operational, Portfolio & Asset efficiency", icon: "home.png" },
+      { title: "Growth & Innovation", icon: "notebook.png" },
+      { title: "Capabilities & Resources", icon: "check.png" },
+      { title: "Shareholder Capital", icon: "chart.png" },
+      { title: "Competitive advantage", icon: "money.png" }
+    ],
+    onIconMouseover: d => textBox.setContent(d.content)
+  });
+
   done();
 }
 

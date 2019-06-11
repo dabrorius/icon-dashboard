@@ -4,6 +4,7 @@
   "scripts": [
     "src/main.js",
     "src/IconMenuComponent.js",
+    "src/TextBoxComponent.js",
     "src/utils/textMeasurer.js",
     "src/utils/wordWrap.js"
   ]

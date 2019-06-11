@@ -13,3 +13,15 @@
   dominant-baseline: hanging;
   font-size: 12px;
 }
+
+.c-icon_menu__image {
+  opacity: 0.9;
+}
+
+.c-icon_menu__image:hover {
+  opacity: 1;
+}
+
+.c-text-box__text {
+  font-size: 12px;
+}
