@@ -1,0 +1,10 @@
+.c-header__title {
+  font-size: 22px;
+  dominant-baseline: hanging;
+}
+
+.c-header__sub-title {
+  font-size: 14px;
+  dominant-baseline: hanging;
+  color: #333;
+}

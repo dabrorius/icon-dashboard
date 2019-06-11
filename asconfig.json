@@ -1,0 +1,10 @@
+{
+  "deckId": "8302",
+  "cardId": "165028",
+  "scripts": [
+    "src/main.js",
+    "src/IconMenuComponent.js",
+    "src/utils/textMeasurer.js",
+    "src/utils/wordWrap.js"
+  ]
+}

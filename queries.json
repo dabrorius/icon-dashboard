@@ -1,0 +1,37 @@
+[
+  {
+    "fields": [
+      {
+        "name": "Title",
+        "alias": "title"
+      },
+      {
+        "name": "Sub Title",
+        "alias": "subtitle"
+      }
+    ],
+    "simple": true
+  },
+  {
+    "fields": [
+      {
+        "name": "Content Sub-Type",
+        "alias": "title"
+      },
+      {
+        "name": "Content",
+        "alias": "content"
+      }
+    ],
+    "filter": {
+      "op": "and",
+      "conditions": [
+        {
+          "name": "Content Type",
+          "eq": "Profile"
+        }
+      ]
+    },
+    "simple": true
+  }
+]
