@@ -40,3 +40,29 @@
   stroke-width: 2px;
   stroke: #2f88dc;
 }
+
+.c-table__cell-content {
+  dominant-baseline: middle;
+  font-size: 10px;
+  fill: #333;
+}
+
+.c-table__background {
+  fill: #fff;
+}
+
+.c-table__cell-background {
+  fill: #dadada;
+}
+
+.c-table__header .c-table__cell-background {
+  fill: #2f88dc;
+  cursor: pointer;
+}
+
+.c-table__header .c-table__cell-content {
+  font-weight: bold;
+  fill: #fff;
+  user-select: none;
+  pointer-events: none;
+}

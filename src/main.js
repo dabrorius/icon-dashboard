@@ -69,6 +69,19 @@ function renderSlide(data, cfg, done) {
     }
   });
 
+  const tableHeight = 200;
+
+  const table = TableComponent(svg, {
+    columns: ["foo", "bar"],
+    columnWidths: ["auto", "50"],
+    x: padding + menuPadding + menuWidth,
+    y: cardHeight - tableHeight,
+    width: tooltipWidth,
+    height: tableHeight
+  });
+
+  table.update([{ foo: 5, bar: 10 }, { foo: 17, bar: 19 }]);
+
   done();
 }
 
