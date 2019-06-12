@@ -23,29 +23,19 @@ function renderSlide(data, cfg, done) {
   const tooltipWidth =
     cardWidth - menuWidth * 2 - padding * 2 - menuPadding * 2;
 
-  svg
-    .append("text")
-    .attr("x", padding)
-    .attr("y", padding)
-    .attr("class", "c-header__title")
-    .text(headerData.title);
+  const header = HeaderComponent(svg, headerData);
 
-  svg
-    .append("text")
-    .attr("x", padding)
-    .attr("y", 40)
-    .attr("class", "c-header__sub-title")
-    .text(headerData.subtitle);
+  const secondRowY = header.getHeight() + 20;
 
   const textBox = TextBoxComponent(svg, {
     x: padding + menuPadding + menuWidth,
-    y: 90,
+    y: secondRowY,
     width: tooltipWidth
   });
 
   IconMenuComponent(svg, leftMenuData, {
     x: padding,
-    y: 90,
+    y: secondRowY,
     width: menuWidth,
     orderAndIcons: [
       { title: "Operational, Portfolio & Asset efficiency", icon: "home.png" },
@@ -63,7 +53,7 @@ function renderSlide(data, cfg, done) {
 
   IconMenuComponent(svg, rightMenuData, {
     x: cardWidth - menuWidth - padding,
-    y: 90,
+    y: secondRowY,
     width: menuWidth,
     iconsOnLeft: true,
     orderAndIcons: [
