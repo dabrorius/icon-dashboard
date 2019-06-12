@@ -3,8 +3,10 @@ function IconMenuComponent(parent, data, options) {
     x = 0,
     y = 0,
     width = 200,
+    height = 200,
     orderAndIcons = [],
-    onIconMouseover
+    onIconMouseover,
+    iconsOnLeft = false
   } = options;
 
   data.sort((a, b) => {
@@ -13,9 +15,9 @@ function IconMenuComponent(parent, data, options) {
     return firstIndex < secondIndex ? -1 : 1;
   });
 
-  const spacing = 80;
-  const imageSize = 40;
+  const spacing = height / data.length;
   const imagePadding = 20;
+  const imageSize = 35;
 
   const labelsWidth = width - imageSize - imagePadding;
 
@@ -41,7 +43,7 @@ function IconMenuComponent(parent, data, options) {
       .enter()
       .append("text")
       .attr("class", "c-icon-menu__text")
-      .attr("x", 0)
+      .attr("x", iconsOnLeft ? imageSize + imagePadding : 0)
       .attr("y", (_, i) => spacing / 2 - halfHeight + i * lineHeight)
       .text(l => l);
   });
@@ -64,7 +66,7 @@ function IconMenuComponent(parent, data, options) {
     .enter()
     .append("image")
     .attr("xlink:href", d => getIconUrl(d.title))
-    .attr("x", width - imageSize)
+    .attr("x", iconsOnLeft ? 0 : width - imageSize)
     .attr("y", (_, i) => i * spacing + spacing / 2 - imageSize / 2)
     .style("width", imageSize)
     .style("height", imageSize)
