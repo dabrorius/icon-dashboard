@@ -73,6 +73,9 @@ function IconMenuComponent(parent, data, options) {
     .attr("class", "c-icon_menu__image");
 
   if (onIconMouseover) {
-    icons.on("mouseover", onIconMouseover);
+    icons.on("mouseover", (d, i) => {
+      const dataObject = Object.assign(d, { y: i * spacing + spacing / 2 });
+      onIconMouseover(dataObject);
+    });
   }
 }

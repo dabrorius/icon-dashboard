@@ -24,4 +24,19 @@
 
 .c-text-box__text {
   font-size: 12px;
+  fill: #333;
+}
+
+.c-text-box__shadow {
+  fill: rgba(0, 0, 0, 0.1);
+}
+
+.c-text-box__arrow-head {
+  fill: #2f88dc;
+}
+
+.c-text-box__background {
+  fill: #ffffff;
+  stroke-width: 2px;
+  stroke: #2f88dc;
 }

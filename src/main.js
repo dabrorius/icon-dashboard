@@ -19,7 +19,7 @@ function renderSlide(data, cfg, done) {
 
   const padding = 10;
   const menuWidth = cardWidth / 4;
-  const menuPadding = 30;
+  const menuPadding = 20;
   const tooltipWidth =
     cardWidth - menuWidth * 2 - padding * 2 - menuPadding * 2;
 
@@ -54,7 +54,11 @@ function renderSlide(data, cfg, done) {
       { title: "Shareholder Capital", icon: "chart.png" },
       { title: "Competitive advantage", icon: "money.png" }
     ],
-    onIconMouseover: d => textBox.setContent(d.content)
+    onIconMouseover: d => {
+      textBox.show();
+      textBox.setContent(d.content);
+      textBox.positionArrowHead("left", d.y);
+    }
   });
 
   IconMenuComponent(svg, rightMenuData, {
@@ -68,7 +72,11 @@ function renderSlide(data, cfg, done) {
       { title: "Performance management", icon: "chart-bright.png" },
       { title: "Leadership & culture", icon: "people-bright.png" }
     ],
-    onIconMouseover: d => textBox.setContent(d.content)
+    onIconMouseover: d => {
+      textBox.show();
+      textBox.setContent(d.content);
+      textBox.positionArrowHead("right", d.y);
+    }
   });
 
   done();
