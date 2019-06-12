@@ -14,6 +14,13 @@
   font-size: 12px;
 }
 
+.c-icon-menu__table-link {
+  dominant-baseline: hanging;
+  font-size: 10px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .c-icon_menu__image {
   opacity: 0.9;
 }

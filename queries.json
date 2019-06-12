@@ -55,5 +55,27 @@
       ]
     },
     "simple": true
+  },
+  {
+    "fields": [
+      {
+        "name": "Content Sub-Type",
+        "alias": "category"
+      },
+      {
+        "name": "Table Name",
+        "alias": "table"
+      },
+      {
+        "name": "Row Name"
+      },
+      {
+        "name": "Availability"
+      },
+      {
+        "name": "Importance"
+      }
+    ],
+    "simple": true
   }
 ]

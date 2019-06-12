@@ -36,8 +36,8 @@ function TableComponent(parent, options = {}) {
   const rowHeight = 20;
 
   let sortOptions = {
-    field: "Benefit",
-    direction: -1
+    field: "Row Name",
+    direction: 1
   };
   let currentContent = [];
   let controlObject;

@@ -6,6 +6,7 @@ function IconMenuComponent(parent, data, options) {
     height = 200,
     orderAndIcons = [],
     onIconMouseover,
+    onLinkClick,
     iconsOnLeft = false
   } = options;
 
@@ -25,11 +26,16 @@ function IconMenuComponent(parent, data, options) {
 
   // Render group for each label
   const textGroups = root
-    .selectAll("g")
+    .selectAll("g.js-label-group")
     .data(data)
     .enter()
     .append("g")
+    .attr("class", "js-label-group")
     .attr("transform", (_, i) => `translate(0,${i * spacing})`);
+
+  // Render icons
+  const getTableLinks = title =>
+    orderAndIcons.find(d => d.title === title).tableLinks || [];
 
   // Render individual lines for each label
   textGroups.each(function(d) {
@@ -37,8 +43,9 @@ function IconMenuComponent(parent, data, options) {
     const lines = wordWrap(d.title, { contentWidth: labelsWidth });
     const lineHeight = 15;
     const halfHeight = (lines.length * lineHeight) / 2;
+
     $this
-      .selectAll("text")
+      .selectAll("text.c-icon-menu__text")
       .data(lines)
       .enter()
       .append("text")
@@ -46,6 +53,22 @@ function IconMenuComponent(parent, data, options) {
       .attr("x", iconsOnLeft ? imageSize + imagePadding : 0)
       .attr("y", (_, i) => spacing / 2 - halfHeight + i * lineHeight)
       .text(l => l);
+
+    const tableLinks = getTableLinks(d.title);
+    $this
+      .selectAll("text.c-icon-menu__table-link")
+      .data(tableLinks)
+      .enter()
+      .append("text")
+      .attr("class", "c-icon-menu__table-link")
+      .attr("x", (_, i) =>
+        i * 170 + iconsOnLeft ? imageSize + imagePadding : 0
+      )
+      .attr("y", (_, i) => 2 * lineHeight)
+      .text(l => l)
+      .on("click", link => {
+        onLinkClick({ tableName: link, category: d.title });
+      });
   });
 
   // Render icons
