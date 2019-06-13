@@ -133,6 +133,43 @@ function renderSlide(data, cfg, done) {
 
   table.update([]);
 
+  const topRightImageSize = 90;
+  svg
+    .append("image")
+    .attr(
+      "xlink:href",
+      "https://raw.githubusercontent.com/dabrorius/icon-dashboard/master/icons/top-right.png"
+    )
+    .attr("x", cardWidth - padding - topRightImageSize)
+    .attr("y", 0)
+    .style("width", topRightImageSize)
+    .style("height", topRightImageSize);
+
+  const botImageWidth = (cardWidth - tableWidth) / 2 - padding * 2;
+  const botLeftAspectRatio = 0.57;
+  svg
+    .append("image")
+    .attr(
+      "xlink:href",
+      "https://raw.githubusercontent.com/dabrorius/icon-dashboard/master/icons/bot-left.png"
+    )
+    .attr("x", 0)
+    .attr("y", cardHeight - padding - botImageWidth * botLeftAspectRatio)
+    .style("width", botImageWidth)
+    .style("height", botImageWidth * botLeftAspectRatio);
+
+  const botRightAspectRatio = 0.66;
+  svg
+    .append("image")
+    .attr(
+      "xlink:href",
+      "https://raw.githubusercontent.com/dabrorius/icon-dashboard/master/icons/bot-right.png"
+    )
+    .attr("x", cardWidth - padding - botImageWidth)
+    .attr("y", cardHeight - padding - botImageWidth * botRightAspectRatio)
+    .style("width", botImageWidth)
+    .style("height", botImageWidth * botRightAspectRatio);
+
   done();
 }
 

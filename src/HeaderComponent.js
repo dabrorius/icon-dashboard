@@ -18,7 +18,7 @@ function HeaderComponent(parent, data) {
     .append("g")
     .attr("transform", `translate(0, ${titleHeight})`);
 
-  const subtitleLines = wordWrap(data.subtitle, { contentWidth: 600 });
+  const subtitleLines = wordWrap(data.subtitle, { contentWidth: 700 });
 
   subtitle
     .selectAll("text")
