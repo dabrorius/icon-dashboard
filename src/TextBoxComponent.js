@@ -8,15 +8,6 @@ function TextBoxComponent(parent, options = {}) {
 
   root.style("visibility", "hidden");
 
-  // Render shadow
-  root
-    .append("rect")
-    .attr("x", 3)
-    .attr("y", 3)
-    .attr("width", width)
-    .attr("height", height)
-    .attr("class", "c-text-box__shadow");
-
   // Render arrowhead
   const arrowHead = root
     .append("rect")
@@ -27,8 +18,19 @@ function TextBoxComponent(parent, options = {}) {
     .attr("class", "c-text-box__arrow-head")
     .attr("transform", "translate(0,20) rotate(45)");
 
+  const content = root.append("g");
+
+  // Render shadow
+  const shadow = content
+    .append("rect")
+    .attr("x", 3)
+    .attr("y", 3)
+    .attr("width", width)
+    .attr("height", height)
+    .attr("class", "c-text-box__shadow");
+
   // Render background
-  root
+  const background = content
     .append("rect")
     .attr("x", 0)
     .attr("y", 0)
@@ -36,7 +38,9 @@ function TextBoxComponent(parent, options = {}) {
     .attr("height", height)
     .attr("class", "c-text-box__background");
 
-  const textGroup = root.append("g");
+  const textGroup = content.append("g");
+
+  let calculatedHeight = 0;
 
   const controller = {
     show: () => {
@@ -45,6 +49,10 @@ function TextBoxComponent(parent, options = {}) {
     positionArrowHead: (side, centerY) => {
       const x = side === "right" ? width : 0;
       const y = centerY - (arrowHeadSize * Math.SQRT2) / 2;
+      content.attr(
+        "transform",
+        `translate(0,${centerY - calculatedHeight / 2})`
+      );
       arrowHead.attr("transform", `translate(${x},${y}) rotate(45)`);
     },
     setContent: content => {
@@ -61,8 +69,11 @@ function TextBoxComponent(parent, options = {}) {
         .text(l => l);
 
       linesSelection.text(l => l);
-
       linesSelection.exit().remove();
+
+      calculatedHeight = textGroup.node().getBBox().height + padding;
+      shadow.attr("height", calculatedHeight);
+      background.attr("height", calculatedHeight);
     }
   };
 
