@@ -1,3 +1,5 @@
+const bottomImagesSlide = 2;
+
 function generateName(data, cfg) {
   return "Focus Table";
 }
@@ -138,7 +140,7 @@ function renderSlide(data, cfg, done) {
     .append("image")
     .attr(
       "xlink:href",
-      "https://raw.githubusercontent.com/dabrorius/icon-dashboard/master/icons/top-right.png"
+      "https://raw.githubusercontent.com/dabrorius/icon-dashboard/master/icons/slide${bottomImagesSlide}__grid.png"
     )
     .attr("x", cardWidth - padding - topRightImageSize)
     .attr("y", 0)
@@ -151,7 +153,7 @@ function renderSlide(data, cfg, done) {
     .append("image")
     .attr(
       "xlink:href",
-      "https://raw.githubusercontent.com/dabrorius/icon-dashboard/master/icons/bot-left.png"
+      `https://raw.githubusercontent.com/dabrorius/icon-dashboard/master/icons/slide${bottomImagesSlide}__bar-chart.png`
     )
     .attr("x", 0)
     .attr("y", cardHeight - padding - botImageWidth * botLeftAspectRatio)
@@ -163,7 +165,7 @@ function renderSlide(data, cfg, done) {
     .append("image")
     .attr(
       "xlink:href",
-      "https://raw.githubusercontent.com/dabrorius/icon-dashboard/master/icons/bot-right.png"
+      `https://raw.githubusercontent.com/dabrorius/icon-dashboard/master/icons/slide${bottomImagesSlide}__matrix.png`
     )
     .attr("x", cardWidth - padding - botImageWidth)
     .attr("y", cardHeight - padding - botImageWidth * botRightAspectRatio)
