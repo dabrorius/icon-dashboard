@@ -10,12 +10,19 @@ function renderSlide(data, cfg, done) {
   measureText = initializeTextMeasurer(svg);
   wordWrap = initializeWordWrapper(measureText);
 
-  const headerData = data[0][0];
-  const leftMenuData = data[1];
-  const rightMenuData = data[2];
+  const headerData = data[0].find(d => d.title && d.subtitle);
+  const leftMenuData = data[1].filter(d => d.title);
+  const rightMenuData = data[2].filter(d => d.title);
   const fullTableData = data[3];
 
-  console.log("FTD", fullTableData);
+  console.log(
+    "DATA",
+    data,
+    headerData,
+    leftMenuData,
+    rightMenuData,
+    fullTableData
+  );
 
   const cardHeight = alytic.cardSize.height;
   const cardWidth = alytic.cardSize.width;
@@ -48,6 +55,14 @@ function renderSlide(data, cfg, done) {
     height: tableHeight
   });
 
+  const handleLinkClick = ({ tableName, category }) => {
+    console.log(tableName, category);
+    const tableData = fullTableData.filter(
+      d => d.category === category && d.table === tableName
+    );
+    table.update(tableData);
+  };
+
   IconMenuComponent(svg, leftMenuData, {
     x: padding,
     y: secondRowY,
@@ -66,7 +81,7 @@ function renderSlide(data, cfg, done) {
       {
         title: "Capabilities & Resources",
         icon: "check.png",
-        tableLinks: ["Capabilities", "Resources"]
+        tableLinks: ["Capability", "Resources"]
       },
       { title: "Shareholder Capital", icon: "chart.png" },
       { title: "Competitive advantage", icon: "money.png" }
@@ -76,14 +91,7 @@ function renderSlide(data, cfg, done) {
       textBox.setContent(d.content);
       textBox.positionArrowHead("left", d.y);
     },
-    onLinkClick: ({ tableName, category }) => {
-      console.log(tableName, category);
-
-      const tableData = fullTableData.filter(
-        d => d.category === category && d.table === tableName
-      );
-      table.update(tableData);
-    }
+    onLinkClick: handleLinkClick
   });
 
   IconMenuComponent(svg, rightMenuData, {
@@ -106,9 +114,7 @@ function renderSlide(data, cfg, done) {
       textBox.setContent(d.content);
       textBox.positionArrowHead("right", d.y);
     },
-    onLinkClick: d => {
-      console.log(d);
-    }
+    onLinkClick: handleLinkClick
   });
 
   table.update([]);
