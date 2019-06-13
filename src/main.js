@@ -71,17 +71,28 @@ function renderSlide(data, cfg, done) {
       {
         title: "Operational, Portfolio & Asset efficiency",
         icon: "home.png",
-        tableLinks: ["Operational, Portfolio & Asset efficiency"]
+        tableLinks: [
+          {
+            label: "Operational, Portfolio & Asset efficiency",
+            value: "Operational, Portfolio & Asset efficiency"
+          }
+        ]
       },
       {
         title: "Growth & Innovation",
         icon: "notebook.png",
-        tableLinks: ["Growth & Innovation"]
+        tableLinks: [
+          { label: "Growth & Innovation", value: "Growth & Innovation" }
+        ]
       },
       {
         title: "Capabilities & Resources",
         icon: "check.png",
-        tableLinks: ["Capability", "Resources"]
+        tableLinks: [
+          { label: "Capabilities", value: "Capability" },
+          { label: "&" },
+          { label: "Resources", value: "Resources" }
+        ]
       },
       { title: "Shareholder Capital", icon: "chart.png" },
       { title: "Competitive advantage", icon: "money.png" }
@@ -106,7 +117,10 @@ function renderSlide(data, cfg, done) {
       {
         title: "Leadership & culture",
         icon: "people-bright.png",
-        tableLinks: ["Leadership"]
+        tableLinks: [
+          { label: "Leadership", value: "Leadership" },
+          { label: "& culture" }
+        ]
       }
     ],
     onIconMouseover: d => {

@@ -35,7 +35,7 @@ function IconMenuComponent(parent, data, options) {
 
   // Render icons
   const getTableLinks = title =>
-    orderAndIcons.find(d => d.title === title).tableLinks || [];
+    orderAndIcons.find(d => d.title === title).tableLinks || [{ label: title }];
 
   // Render individual lines for each label
   textGroups.each(function(d) {
@@ -44,31 +44,28 @@ function IconMenuComponent(parent, data, options) {
     const lineHeight = 15;
     const halfHeight = (lines.length * lineHeight) / 2;
 
-    $this
-      .selectAll("text.c-icon-menu__text")
-      .data(lines)
-      .enter()
-      .append("text")
-      .attr("class", "c-icon-menu__text")
-      .attr("x", iconsOnLeft ? imageSize + imagePadding : 0)
-      .attr("y", (_, i) => spacing / 2 - halfHeight + i * lineHeight)
-      .text(l => l);
-
     const tableLinks = getTableLinks(d.title);
-    $this
-      .selectAll("text.c-icon-menu__table-link")
-      .data(tableLinks)
-      .enter()
-      .append("text")
-      .attr("class", "c-icon-menu__table-link")
-      .attr("x", (_, i) =>
-        i * 170 + iconsOnLeft ? imageSize + imagePadding : 0
-      )
-      .attr("y", (_, i) => 2 * lineHeight)
-      .text(l => l)
-      .on("click", link => {
-        onLinkClick({ tableName: link, category: d.title });
-      });
+
+    let xOffset = 0;
+
+    tableLinks.forEach(({ label, value }) => {
+      console.log("OFFSET", xOffset);
+      const spaceSize = 3;
+      const element = $this
+        .append("text")
+        .attr("class", value ? "c-icon-menu__link" : "c-icon-menu__text")
+        .attr("x", xOffset + (iconsOnLeft ? imageSize + imagePadding : 0))
+        .attr("y", (_, i) => spacing / 2 - halfHeight)
+        .text(label);
+
+      if (value) {
+        element.on("click", () => {
+          onLinkClick({ tableName: value, category: d.title });
+        });
+      }
+
+      xOffset += element.node().getBBox().width + spaceSize;
+    });
   });
 
   // Render icons

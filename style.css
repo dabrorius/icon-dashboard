@@ -14,9 +14,9 @@
   font-size: 12px;
 }
 
-.c-icon-menu__table-link {
+.c-icon-menu__link {
   dominant-baseline: hanging;
-  font-size: 10px;
+  font-size: 12px;
   cursor: pointer;
   text-decoration: underline;
 }
